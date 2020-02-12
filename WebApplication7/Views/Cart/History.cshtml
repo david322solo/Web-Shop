@@ -1,0 +1,21 @@
+﻿@model IEnumerable<WebApplication7.Models.History>
+
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Date</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@(item.Price*item.Quantity)</td>
+            <td>@item.Quantity</td>
+            <td>@item.dateTime</td>
+            <td>@item.DeliveryAddress</td>
+        </tr>
+    }
+</table>

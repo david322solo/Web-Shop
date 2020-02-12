@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout1.cshtml";
+}
+
+
+@using (Html.BeginForm("Create", "Admin",
+FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.EditorForModel()
+    
+    <input type="submit" value="Save" />
+}
+
+<div>
+    <a asp-action="Index" asp-controller="Admin" asp-route-table="Product">Back to List</a>
+</div>
+

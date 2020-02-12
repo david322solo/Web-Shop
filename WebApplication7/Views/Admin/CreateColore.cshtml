@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout1.cshtml";
+    ViewBag.Title = "Admin: Create Category";
+}
+@model WebApplication7.Models.Colore
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Create Colore</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="CreateColore" asp-controller="Admin" enctype="multipart/form-data" id="quickForm">
+                        <div class="card-body">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="NameColore" class="control-label"></label>
+                                <input asp-for="NameColore" class="form-control" />
+                                <span asp-validation-for="NameColore" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <a asp-action="Index" asp-controller="Admin" asp-route-table="Colore">Back to List</a>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>

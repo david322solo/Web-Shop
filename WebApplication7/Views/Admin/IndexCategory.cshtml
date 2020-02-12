@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout1.cshtml";
+}
+@{
+    ViewData["Title"] = "Admin: Category";
+}
+@model IQueryable<WebApplication7.Models.Category>
+<section class="content">
+    <div class="row mr-0">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Category Table <span><a asp-action="Create" asp-controller="Admin" asp-route-table="Category">Create Category</a></span></h3>
+                </div>
+                <div class="card-header"> <a asp-action="Export" asp-controller="Admin" asp-route-tb="Category">Export in xml</a></div>
+                <div class="card-header"> <a asp-action="Import" asp-controller="Admin" asp-route-tb="Category">Import in xml</a></div>
+
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.row -->
+</section>
+

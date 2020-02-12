@@ -1,0 +1,9 @@
+﻿@model WebApplication7.Models.Cart
+    <h3>
+        Are you sure you want to buy these products?
+    </h3>
+    <form asp-action="Checkout" asp-controller="Cart" asp-anti-forgery="true">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="text" name="address" placeholder="Input address" class="form-control col-6" />
+        <input type="submit" value="Checkout" class="btn btn-outline-info btn-sm pull-right" />
+    </form>

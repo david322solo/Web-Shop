@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout1.cshtml";
+}
+@{
+    ViewData["Title"] = "Admin: Users";
+}
+@model IQueryable<WebApplication7.Models.User>
+@{ 
+    int counter = 0;
+}
+<section class="content">
+    <div class="row mr-0">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">User Table</h3>
+                </div>
+                <div class="card-header"> <a asp-action="Export" asp-controller="Admin" asp-route-tb="usercustomer">Export in xml</a></div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Login</th>
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>City</th>
+                                <th>Region</th>
+                                <th>Phone</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th>Roles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Login</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Country</td>
+                                    <td>@item.City</td>
+                                    <td>@item.Region</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Password</td>
+                                    <td>@item.Email</td>
+                                    <td>
+
+                                        @foreach (var role in item.Roles)
+                                        {
+                                            string str = role.RoleName + "   ";
+                                            @str
+                                        }
+                                        @if (item.Roles.Count == 1)
+                                        {
+                                            <a asp-action="AddRole" asp-controller="Admin" asp-route-idr="@item.Login" asp-route-roler="admin">Add for user admin role</a>
+                                        }
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Id</th>
+                                <th>Login</th>
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>City</th>
+                                <th>Region</th>
+                                <th>Phone</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th>Roles</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.row -->
+</section>

@@ -1,0 +1,44 @@
+﻿@model WebApplication7.ViewModels.CartIndexViewModel
+@{
+    ViewBag.Title = "Cart";
+}
+@using System.Globalization;
+<h2>@ViewBag.Title</h2>
+<table class="table">
+    <tr>
+        <th>Quantity</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th>Remove</th>
+
+    </tr>
+    @foreach (var item in Model.Cart.Lines)
+    {
+        <tr>
+            <td>@item.Quantity</td>
+            <td>@item.Product.Name</td>
+            <td>@item.Product.Price.ToString("C", new CultureInfo("en-us"))</td>
+            <td>@((item.Quantity * item.Product.Price).ToString("C",new CultureInfo("en-us")))</td>
+            <td>
+                <form asp-action="RemoveFromCart" asp-controller="Cart" asp-anti-forgery="true">
+                    <input asp-for="@item.Product.Id" name="Id" id="Id" type="hidden" />
+                    @Html.Hidden("returnUrl", Model.ReturnUrl)
+                    <button type="submit" class="btn btn-outline-dark">Remove</button>
+                </form>
+            </td>
+        </tr>
+    }
+    <tfoot>
+        <tr>
+            <td>Total Price:</td>
+            <td>@Model.Cart.ComputeTotalValue().ToString("C",new CultureInfo("en-us"))</td>
+            <td><a asp-action="Checkout" asp-controller="Cart" class="btn btn-outline-info btn-sm pull-right">Checkout</a></td>
+        </tr>
+    </tfoot>
+</table>
+
+    <div>
+        <a class="btn btn-outline-info btn-sm pull-right" href="@Model.ReturnUrl">Back to Shop</a>
+    </div>
+

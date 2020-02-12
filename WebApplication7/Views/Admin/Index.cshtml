@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout1.cshtml";
+}
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@{
+    @using System.Reflection;
+    PropertyInfo[] myPropertyInfo;
+
+    Type myType = Type.GetType(ViewBag.type, false, true);
+    // Get the type and fields of FieldInfoClass.
+    myPropertyInfo = myType.GetProperties();
+    Console.WriteLine("\nThe property of " +
+    "FieldInfoClass are \n");
+    for (int i = 0; i < myPropertyInfo.Length; i++)
+        Console.WriteLine(myPropertyInfo[i].Name);
+
+}
+<table class="table">
+    <tr class="bg-secondary">
+        @foreach (var q in myPropertyInfo)
+        {
+            if (q.Name == "ImageData")
+            {
+
+            }
+            else
+            {
+            <td>@q.Name</td>
+            }
+        }
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*@foreach (var q in myPropertyInfo)
+                {
+                    if (q.Name == "Roles")
+                    {
+                        <td>
+                            @foreach (var role in item.Roles)
+                            {
+                                string str = role.RoleName + "   ";
+                                @str
+                            }
+                        </td>
+                        break;
+                    }
+
+                    if (q.Name == "Price")
+                    {
+                        if (myPropertyInfo.FirstOrDefault(p => p.Name == "Quantity") != null)
+                        {
+                            Console.WriteLine(q.GetValue(item));
+                            <td>@(q.GetValue(item) * item.Quantity)</td>
+                        }
+                    }
+                    else
+                    {
+                        <td>@q.GetValue(item)</td>
+                    }
+                }*@
+            @foreach (var q in myPropertyInfo)
+            {
+                if (q.Name == "Roles")
+                {
+                    <td>
+                        @foreach (var role in item.Roles)
+                        {
+                            string str = role.RoleName + "   ";
+                            @str
+                        }
+                    </td>
+                    break;
+                }
+                else if(q.Name=="ImageData")
+                { }
+                else
+                {
+                    <td>@q.GetValue(item)</td>
+                }
+            }
+
+            @if (ViewBag.type == "WebApplication7.Models.Product, WebApplication7")
+            {
+                <td>
+                    <a asp-action="Details" asp-controller="Admin" class="text-primary" asp-route-table="@item.GetType().Name" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Edit" asp-controller="Admin" class="text-primary" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-controller="Admin" class="text-primary" asp-route-id="@item.Id">Delete</a>
+                </td>
+            } else if(ViewBag.type == "WebApplication7.Models.AllHistory, WebApplication7")
+            {
+
+            }
+            else
+            {
+            <td>
+                <a asp-action="Edit" asp-controller="Admin" class="text-primary" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Delete" asp-controller="Admin" class="text-primary" asp-route-id="@item.Id">Delete</a>
+            </td>
+            }
+
+        </tr>
+    }
+</table>

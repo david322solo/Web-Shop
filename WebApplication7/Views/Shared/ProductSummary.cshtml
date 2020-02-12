@@ -1,0 +1,41 @@
+﻿@model WebApplication7.Models.Product
+<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-sm-3">
+    <div class="card" style="height: 100%;">
+        <a style="display: flex; height: 252px; align-items: center; justify-content: center;" asp-controller="Cart" title="@Model.Name" asp-action="Details" asp-route-id="@Model.Id"  asp-route-returnUrl="@Context.Request.Path">
+            @if (Model.ImageData != null)
+            {
+                <img class="card-img-top" src="data:@(Model.ImageData);base64,@(Convert.ToBase64String(Model.ImageData))"
+                     alt="Card image cap" style="max-height: 100%;">
+            }
+            else
+            {
+
+            }
+        </a>
+        <div class="card-body">
+            <h3 class="card-title">
+                @{
+                    if (Model.Name.Length > 12)
+                    {
+                        @Model.Name.Substring(0, 12);
+                    }
+                    else
+                    {
+                        @Model.Name
+                    }
+                }
+            </h3>
+            <h6 class="card-subtitle">@Model.Category</h6>
+            <h6 class="card-subtitle">@Model.Price $</h6>
+            <h3 class="card-"></h3>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <form asp-action="AddToCart" asp-controller="Cart" asp-anti-forgery="true">
+                <div class="item">
+                    <input asp-for="Id" type="hidden" />
+                    @Html.Hidden("returnUrl", @Context.Request.Path)
+                    <button type="submit" class="btn btn-outline-info btn-sm pull-right">Add to cart</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

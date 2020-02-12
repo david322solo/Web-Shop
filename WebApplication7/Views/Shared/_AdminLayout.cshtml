@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="wIdh=device-wIdh, initial-scale=1.0" />
+    <link href="~/css/admin.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <title>Admin: @ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        @if (TempData["message"] != null)
+        {
+            <div class="Message">@TempData["message"]</div>
+        }
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    @*most importante script because i find him more time*@
+    <script>
+
+        $.validator.methods.range = function (value, element, param) {
+            var globalizedValue = value.replace(",", ".");
+            return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+        }
+
+        $.validator.methods.number = function (value, element) {
+            return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+        }
+    </script>
+
+</body>
+</html>
+
+

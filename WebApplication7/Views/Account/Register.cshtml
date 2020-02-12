@@ -1,0 +1,56 @@
+﻿@model WebApplication7.ViewModels.RegisterViewModel
+<h2>Registration</h2>
+
+<form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
+ <div asp-validation-summary="ModelOnly" class="text-danger"></div>    <div>
+    <div>
+        <label asp-for="Login">Input login</label><br />
+        <input type="text" asp-for="Login" class="form-control col-2" placeholder="Input login" />
+        <span asp-validation-for="Login" class="text-danger" />
+    </div>
+    <div>
+        <label asp-for="Name">Input name</label><br />
+        <input type="text" asp-for="Name" class="form-control col-2" placeholder="Input name" />
+        <span asp-validation-for="Name" class="text-danger" />
+    </div>
+    <div>
+        <label asp-for="Email">Input email</label><br />
+        <input type="email" asp-for="Email" class="form-control col-2" placeholder="Input email" />
+        <span asp-validation-for="Email" class="text-danger" />
+    </div>
+    <div>
+        <label asp-for="Password">Input Password</label><br />
+        <input type="password" asp-for="Password" class="form-control col-2" placeholder="Input Password" />
+        <span asp-validation-for="Password" class="text-danger" />
+    </div>
+    <div>
+        <label asp-for="Confirm">Confirm Password</label><br />
+        <input type="password" asp-for="Confirm" class="form-control col-2" placeholder="Confirm Password" />
+        <span asp-validation-for="Confirm" class="text-danger" />
+    </div>
+    <div>
+        <label asp-for="City">Input City</label><br />
+        <input type="text" asp-for="City" class="form-control col-2" placeholder="City" />
+        <span asp-validation-for="City" class="text-danger" />
+    </div>
+    <div>
+        <label asp-for="Region">Input Region</label><br />
+        <input type="text" asp-for="Region" class="form-control col-2" placeholder="Region" />
+        <span asp-validation-for="Region" class="text-danger" />
+    </div>
+    <div>
+        <label asp-for="Country">Input Country</label><br />
+        <input type="text" asp-for="Country" class="form-control col-2" placeholder="Country" />
+        <span asp-validation-for="Country" class="text-danger" />
+    </div>
+    <div>
+        <label asp-for="Phone">Input phone number</label><br />
+        <input type="text" asp-for="Phone" class="form-control col-2" placeholder="Input phone number" />
+        <span asp-validation-for="Phone" class="text-danger" />
+    </div><br />
+    <div>
+        <input type="submit" value="Registration" class="btn btn-outline-primary" />
+    </div>
+</div>
+</form>
+

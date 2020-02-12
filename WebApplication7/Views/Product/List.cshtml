@@ -1,0 +1,36 @@
+﻿@model WebApplication7.ViewModels.ProductsListViewModel
+@{
+    ViewData["Title"] = "ProductList";
+}
+
+<div class="row">
+    @foreach (var product in Model.products)
+    {
+        await Html.RenderPartialAsync("ProductSummary", product);
+    }
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+        <nav aria-label="Page navigation">
+
+            <ul class="pagination " style="margin-bottom:60px;">
+                <li class="page-item @(!Model.PagingInfo.ShowFirst? "disabled":"")">
+                    <a asp-route-page="1" asp-route-category="@Model.CurrentCategory" class="page-link"><i class="fas fa-fast-backward"></i></a>
+                </li>
+
+                <li class="page-item @(!Model.PagingInfo.ShowPrevious? "disabled":"")">
+                    <a asp-route-page="@(Model.PagingInfo.CurrentPage -1)" asp-route-category="@Model.CurrentCategory" class="page-link"><i class="fas fa-step-backward"></i></a>
+                </li>
+                <li class="page-item  @(!Model.PagingInfo.ShowNext? "disabled":"")">
+                    <a asp-route-page="@(Model.PagingInfo.CurrentPage +1)" asp-route-category="@Model.CurrentCategory" class="page-link"><i class="fas fa-step-forward"></i></a>
+                </li>
+
+                <li class="page-item  @(!Model.PagingInfo.ShowLast? "disabled":"")">
+                    <a asp-route-page="@Model.PagingInfo.TotalPages" asp-route-category="@Model.CurrentCategory" class="page-link"><i class="fas fa-fast-forward"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    </div>
+</div>
